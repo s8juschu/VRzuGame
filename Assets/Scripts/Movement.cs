@@ -30,6 +30,12 @@ public class Movement : MonoBehaviour {
 		if (Input.GetKeyUp("w")) {
 			anim.SetFloat("MoveZ", 0.0f);
 		}
+		if (Input.GetKeyDown("w")&&Input.GetKey(KeyCode.LeftShift)) {
+			anim.SetFloat("MoveZ",2*movementZ);
+		}
+		if (Input.GetKeyUp("w")&&Input.GetKey(KeyCode.LeftShift)) {
+			anim.SetFloat("MoveZ", 0.0f);
+		}
 		if (Input.GetKeyDown("s")) {
 			anim.SetFloat("MoveZ", -movementZ);
 		}
