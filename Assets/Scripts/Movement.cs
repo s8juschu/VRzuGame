@@ -5,9 +5,9 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
 
     Animator anim;
-    public float speed = 10.0f;
-	float movementZ = 0.5f;
-	float movementX = 0.5f;
+	float movementZ = 0.0f;
+	float movementX = 0.0f;
+    float speedModifier;
     Rigidbody playerRB;
 
 
@@ -23,35 +23,39 @@ public class Movement : MonoBehaviour {
     //Update is called once per frame
     void Update () {
 		//Walk
-		
-        if (Input.GetKeyDown("w")) {
-			anim.SetFloat("MoveZ", movementZ);
-		}
-		if (Input.GetKeyUp("w")) {
+        speedModifier = 1.0f;
+        
+       	if (Input.anyKey)
+        {
+           if(Input.GetKey(KeyCode.LeftShift)){
+            speedModifier = 2.0f;
+            }
+            if (Input.GetKey("w")) {
+				if (movementZ < 0.5f ){
+					movementZ += 0.05f;
+               		anim.SetFloat("MoveZ", movementZ);
+				}
+				if (movementZ >= 0.5f ){
+					movementZ = 0.5f;
+					anim.SetFloat("MoveZ", movementZ);
+				}
+            }
+			if (Input.GetKey("s")) {
+				anim.SetFloat("MoveZ", -movementZ);
+			}
+			if (Input.GetKey("d")) {
+				anim.SetFloat("MoveX", movementX);
+			}
+			if (Input.GetKey("a")) {
+				anim.SetFloat("MoveX", -movementX);
+			}
+        }
+		else {
+			if (movementZ > 0.0f ){
+					movementZ -= 0.05f;
+               		anim.SetFloat("MoveZ", movementZ);
+				}
 			anim.SetFloat("MoveZ", 0.0f);
-		}
-		if ((Input.GetKeyDown("w")&&Input.GetKey(KeyCode.LeftShift))||(Input.GetKey(KeyCode.LeftShift)&&Input.GetKeyDown("w"))) {
-			anim.SetFloat("MoveZ",2*movementZ);
-		}
-		if (Input.GetKeyUp("w")) {
-			anim.SetFloat("MoveZ", 0.0f);
-		}
-		if (Input.GetKeyDown("s")) {
-			anim.SetFloat("MoveZ", -movementZ);
-		}
-		if (Input.GetKeyUp("s")) {
-			anim.SetFloat("MoveZ", 0.0f);
-		}
-		if (Input.GetKeyDown("d")) {
-			anim.SetFloat("MoveX", movementX);
-		}
-		if (Input.GetKeyUp("d")) {
-			anim.SetFloat("MoveX", 0.0f);
-		}
-	    if (Input.GetKeyDown("a")) {
-			anim.SetFloat("MoveX", -movementX);
-		}
-		if (Input.GetKeyUp("a")) {
 			anim.SetFloat("MoveX", 0.0f);
 		}
 		

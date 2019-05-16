@@ -312,7 +312,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.0812e-41, y: 0, z: 0, w: 3848.3872}
+  m_BoundingSphereOverride: {x: -0.03515625, y: -1, z: 6, w: 8}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 963194232}
   - component: {fileID: 963194231}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -410,12 +411,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.17284694, y: -0.042122163, z: 0.0048528817, w: 0.9840356}
-  m_LocalPosition: {x: 0.017, y: 0.381, z: -0.392}
-  m_LocalScale: {x: 0.10000001, y: 0.09999998, z: 0.1}
+  m_LocalPosition: {x: 2.6750002, y: 3.81, z: -3.2299998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1321499300}
-  m_RootOrder: 13
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 19.912, y: -4.9560003, z: -0.305}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0f4e6a21baa46aa8775a6a002ec9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1321499300}
+  offsetPosition: {x: 0, y: 3, z: -6}
+  offsetPositionSpace: 0
+  lookAt: 1
 --- !u!136 &963194230
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -626,7 +643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6618d410ba39142a003003db33014c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
 --- !u!136 &1321499302
 CapsuleCollider:
   m_ObjectHideFlags: 0
