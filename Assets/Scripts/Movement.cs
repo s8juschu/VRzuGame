@@ -37,6 +37,8 @@ public class Movement : MonoBehaviour {
 			}
 			if (Input.GetKey("s")) {
 				anim.SetFloat("MoveZ", movementZ-speedModifier);
+				movementZ -= 0.04f;
+				while (movementZ < -0.5f ) movementZ = -0.5f;
 			}
 			if (Input.GetKey("d")) {
 				anim.SetFloat("MoveX", speedModifier+movementX);
@@ -46,7 +48,6 @@ public class Movement : MonoBehaviour {
 			}
         }
 		else {
-			while (movementZ <= 0.0f ) movementZ = 0.0f;
 			anim.SetFloat("MoveZ", 0.0f);
 			anim.SetFloat("MoveX", 0.0f);
 		}
