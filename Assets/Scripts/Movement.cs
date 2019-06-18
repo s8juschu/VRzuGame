@@ -8,13 +8,15 @@ public class Movement : MonoBehaviour {
 	float movementZ = 0.0f;
 	float movementX = 0.0f;
     float speedModifier;
-    Rigidbody playerRB;
+	
+	float speedAdjust = 0.05f;
+
 
 
     // Use this for initialization
     void Start () {
 
-        playerRB = GetComponent<Rigidbody>();
+
 
         anim = GetComponent<Animator>();
 		
@@ -25,11 +27,11 @@ public class Movement : MonoBehaviour {
 		//Walk
         //speedModifier = 0.5f;
         
-       	if (Input.anyKey)
-        {
+       
             if(Input.GetKey(KeyCode.LeftShift)){
 			   speedModifier += 0.05f;
-		       while (speedModifier > 2.0f ) speedModifier = 2.0f;  
+		       if (speedModifier > 2.0f ) speedModifier = 2.0f;  
+				this.transform.Translate(Vector3.forward*speedAdjust*speedModifier);
             }
 			if (Input.GetKey("w")) {
 				if(!Input.GetKey(KeyCode.LeftShift)){
@@ -37,36 +39,44 @@ public class Movement : MonoBehaviour {
 				}
 				anim.SetFloat("MoveZ", speedModifier+movementZ);
 				movementZ += 0.05f;
-				while (movementZ > 0.5f ) movementZ = 0.5f;
+				if (movementZ > 0.5f ) movementZ = 0.5f;
+				this.transform.Translate(Vector3.forward*speedAdjust);
 			}
+		else{
+				anim.SetFloat("MoveZ", 0);
+		}
 			if (Input.GetKey("s")) {
 				anim.SetFloat("MoveZ", movementZ-speedModifier);
 				movementZ -= 0.04f;
 				while (movementZ < -0.5f ) movementZ = -0.5f;
+					this.transform.Translate(Vector3.forward*speedAdjust*-0.5f);
+			}else{
+				if(!Input.GetKey("w")){
+					anim.SetFloat("MoveZ", 0f);
+				}
 			}
 			if (Input.GetKey("d")) {
 				anim.SetFloat("MoveX", movementX);
 				movementX += 0.05f;
-				while (movementX > 0.5f ) movementX = 0.5f;
+				if (movementX > 0.5f ) movementX = 0.5f;
+				this.transform.Rotate(0,1f,0);
+			}else{
+				if(!Input.GetKey("a")){
+					anim.SetFloat("MoveX", 0f);
+				}
 			}
 			if (Input.GetKey("a")) {
 				anim.SetFloat("MoveX", movementX);
 				movementX-= 0.04f;
-				while (movementX < -0.5f ) movementX= -0.5f;
+				if (movementX < -0.5f ) movementX= -0.5f;
+				this.transform.Rotate(0,-1f,0);
+			}else{
+				if(!Input.GetKey("d")){
+				anim.SetFloat("MoveX", 0f);
+				}
 			}
         }
-		else {
-			if (movementX > 0.0f)
-			{
-				Debug.Log("test größer");
-			}
-			if (movementX < 0.0f)
-			{
-				Debug.Log("test kleiner");
-			}
-			anim.SetFloat("MoveZ", 0.0f);
-			anim.SetFloat("MoveX", 0.0f);
-		}
 		
-	}
+		
+	
 }
