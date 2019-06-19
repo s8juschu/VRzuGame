@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour {
 				anim.SetFloat("MoveX", movementX);
 				movementX += 0.05f;
 				if (movementX > 0.5f ) movementX = 0.5f;
-				this.transform.Rotate(0,1f,0);
+				this.transform.Rotate(0,1.5f,0);
 			}else{
 				if(!Input.GetKey("a")){
 					anim.SetFloat("MoveX", 0f);
@@ -69,7 +69,7 @@ public class Movement : MonoBehaviour {
 				anim.SetFloat("MoveX", movementX);
 				movementX-= 0.04f;
 				if (movementX < -0.5f ) movementX= -0.5f;
-				this.transform.Rotate(0,-1f,0);
+				this.transform.Rotate(0,-1.5f,0);
 			}else{
 				if(!Input.GetKey("d")){
 				anim.SetFloat("MoveX", 0f);
