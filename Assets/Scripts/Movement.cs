@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour {
 
@@ -8,12 +10,20 @@ public class Movement : MonoBehaviour {
 	float movementZ = 0.0f;
 	float movementX = 0.0f;
     float speedModifier;
-	
 	float speedAdjust = 0.05f;
+	
+	[SerializeField] private Text countText;
+	[SerializeField] private Text winText;
+    private int count;
+	
+	public int numPotions;
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();		
+		
+		count = 0;
+        SetCountText ();
 	}
  
     //Update is called once per frame
@@ -70,4 +80,38 @@ public class Movement : MonoBehaviour {
 			}
 		}
 	}
+		
+	   void OnTriggerEnter(Collider other) 
+    {
+        if (other.gameObject.CompareTag ("Potion"))
+        {
+            other.gameObject.SetActive (false);
+			count = count + 10;
+			numPotions --;
+            SetCountText ();
+        }
+		   
+		if (other.gameObject.CompareTag ("Blume"))
+        {
+            other.gameObject.SetActive (false);
+			count = count + 20;
+            SetCountText ();
+        }
+		   
+		if (other.gameObject.CompareTag ("Stab"))
+        {
+            other.gameObject.SetActive (false);
+			count = count + 30;
+            SetCountText ();
+        }   
+    }
+	
+	void SetCountText ()
+    {
+        countText.text = "Points: " + count.ToString ();
+        if (numPotions<= 0)
+        {
+            winText.text = "All potions found! Bring them to the cauldron.";
+        }
+    }
 }
