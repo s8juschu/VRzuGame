@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GamePlay : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GamePlay : MonoBehaviour
 		doOnce=true;
 		timeText.text =  "Time left: 0.00 sec";
 		timer = 0.0f;
+		SceneManager.LoadScene("GameOverScreen");
 	  }
      }
 

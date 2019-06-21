@@ -18,9 +18,12 @@ public class Movement : MonoBehaviour {
 	
 	public int numPotions;
 	
-	public AudioSource[] sounds;
-    public AudioSource collectAudio;
-    public AudioSource specialAudio;
+	private AudioSource[] sounds;
+    private AudioSource collectAudio;
+    private AudioSource specialAudio;
+	
+	private GameObject kessel;
+	private GameObject kesselFeuer;
 
 
     // Use this for initialization
@@ -29,6 +32,10 @@ public class Movement : MonoBehaviour {
 		sounds = GetComponents<AudioSource>();
         collectAudio = sounds[0];
         specialAudio = sounds[1];
+		
+		kessel = GameObject.Find ("Kessel");
+		kesselFeuer = GameObject.Find ("KesselFeuer");
+		kesselFeuer.SetActive(false); 
 		
 		count = 0;
         SetCountText ();
@@ -114,7 +121,20 @@ public class Movement : MonoBehaviour {
 			count = count + 30;
             SetCountText ();
 			specialAudio.Play();
-        }   
+        }  
+				
+		if	(other.gameObject.CompareTag ("KesselFeuer")){
+			winText.text = "You won!";
+		}
+				
+    }
+	
+		
+	 void OnCollisionEnter(Collision other)
+    {
+        if	(other.gameObject.CompareTag ("KesselFeuer")){
+			winText.text = "You won!";
+		}
     }
 	
 	void SetCountText ()
@@ -123,6 +143,8 @@ public class Movement : MonoBehaviour {
         if (numPotions<= 0)
         {
             winText.text = "All potions found! Bring them to the cauldron.";
+			kesselFeuer.SetActive(true); 
+			kessel.SetActive(false); 
         }
     }
 }

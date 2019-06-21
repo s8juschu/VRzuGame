@@ -7,6 +7,8 @@ TagManager:
   - Potion
   - Blume
   - Stab
+  - Kessel
+  - KesselFeuer
   layers:
   - Default
   - TransparentFX
