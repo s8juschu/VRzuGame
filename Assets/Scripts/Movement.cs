@@ -17,10 +17,18 @@ public class Movement : MonoBehaviour {
     private int count;
 	
 	public int numPotions;
+	
+	public AudioSource[] sounds;
+    public AudioSource collectAudio;
+    public AudioSource specialAudio;
+
 
     // Use this for initialization
     void Start () {
-        anim = GetComponent<Animator>();		
+        anim = GetComponent<Animator>();	
+		sounds = GetComponents<AudioSource>();
+        collectAudio = sounds[0];
+        specialAudio = sounds[1];
 		
 		count = 0;
         SetCountText ();
@@ -89,6 +97,7 @@ public class Movement : MonoBehaviour {
 			count = count + 10;
 			numPotions --;
             SetCountText ();
+			collectAudio.Play();
         }
 		   
 		if (other.gameObject.CompareTag ("Blume"))
@@ -96,6 +105,7 @@ public class Movement : MonoBehaviour {
             other.gameObject.SetActive (false);
 			count = count + 20;
             SetCountText ();
+			specialAudio.Play();
         }
 		   
 		if (other.gameObject.CompareTag ("Stab"))
@@ -103,6 +113,7 @@ public class Movement : MonoBehaviour {
             other.gameObject.SetActive (false);
 			count = count + 30;
             SetCountText ();
+			specialAudio.Play();
         }   
     }
 	
