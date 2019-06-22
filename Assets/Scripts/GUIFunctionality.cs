@@ -18,4 +18,9 @@ public class GUIFunctionality : MonoBehaviour
     {
         SceneManager.LoadScene("StartMenu");
     }
+	
+	public void EndGame()
+    {
+        Application.Quit();
+    }	
 }

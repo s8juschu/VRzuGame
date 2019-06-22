@@ -9,6 +9,7 @@ TagManager:
   - Stab
   - Kessel
   - KesselFeuer
+  - RundPotion
   layers:
   - Default
   - TransparentFX

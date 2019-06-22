@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour {
 
@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour {
 	
 	[SerializeField] private Text countText;
 	[SerializeField] private Text winText;
-    private int count;
+    static public int count;
 	
 	public int numPotions;
 	
@@ -106,6 +106,15 @@ public class Movement : MonoBehaviour {
             SetCountText ();
 			collectAudio.Play();
         }
+		
+		if (other.gameObject.CompareTag ("RundPotion"))
+        {
+            other.gameObject.SetActive (false);
+			count = count + 15;
+			numPotions --;
+            SetCountText ();
+			collectAudio.Play();
+        }
 		   
 		if (other.gameObject.CompareTag ("Blume"))
         {
@@ -134,6 +143,7 @@ public class Movement : MonoBehaviour {
     {
         if	(other.gameObject.CompareTag ("KesselFeuer")){
 			winText.text = "You won!";
+			SceneManager.LoadScene("WinScene");
 		}
     }
 	
