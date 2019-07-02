@@ -43,25 +43,20 @@ public class Movement : MonoBehaviour {
  
     //Update is called once per frame
     void Update () {
-        //speedModifier = 0.5f;        
        
-		if(Input.GetKey(KeyCode.LeftShift)){
-           speedAdjust = 0.15f;
-		   speedModifier += 0.05f;
-		   if (speedModifier > 2.0f ) speedModifier = 2.0f;  
-			//this.transform.Translate(Vector3.forward*speedAdjust*speedModifier);
-		}else{
-				speedAdjust = 0.05f;
-		}
 		if (Input.GetKey("w")) {
 			if(!Input.GetKey(KeyCode.LeftShift)){
 			speedModifier = 0.0f;
 			}
+			speedModifier += 0.05f; 
+		    if (speedModifier > 2.0f ) speedModifier = 2.0f;  
 			anim.SetFloat("MoveZ", speedModifier+movementZ);
-			movementZ += 0.05f;
-			if (movementZ > 0.5f ) movementZ = 0.5f;
+			movementZ += 0.04f;
+			if (movementZ > 0.6f ) speedAdjust = 0.15f;
+			if (movementZ > 1.0f ) movementZ = 1.0f;
 			this.transform.Translate(Vector3.forward*speedAdjust);
 		}else{
+				speedModifier = 0.0f;
 				anim.SetFloat("MoveZ", 0);
 		}
 		if (Input.GetKey("s")) {
