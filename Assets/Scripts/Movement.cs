@@ -45,9 +45,6 @@ public class Movement : MonoBehaviour {
     void Update () {
        
 		if (Input.GetKey("w")) {
-			if(!Input.GetKey(KeyCode.LeftShift)){
-			speedModifier = 0.0f;
-			}
 			speedModifier += 0.05f; 
 		    if (speedModifier > 2.0f ) speedModifier = 2.0f;  
 			anim.SetFloat("MoveZ", speedModifier+movementZ);
@@ -73,7 +70,7 @@ public class Movement : MonoBehaviour {
 			anim.SetFloat("MoveX", movementX);
 			movementX += 0.05f;
 			if (movementX > 0.5f ) movementX = 0.5f;
-			this.transform.Rotate(0,1.5f,0);
+			this.transform.Rotate(0,2.0f,0);
 		}else{
 			if(!Input.GetKey("a")){
 				anim.SetFloat("MoveX", 0f);
@@ -83,7 +80,7 @@ public class Movement : MonoBehaviour {
 			anim.SetFloat("MoveX", movementX);
 			movementX-= 0.04f;
 			if (movementX < -0.5f ) movementX= -0.5f;
-			this.transform.Rotate(0,-1.5f,0);
+			this.transform.Rotate(0,-2.0f,0);
 		}else{
 			if(!Input.GetKey("d")){
 			anim.SetFloat("MoveX", 0f);
