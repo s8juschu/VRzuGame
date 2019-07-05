@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        anim = GetComponent<Animator>();	
+        anim = GetComponent<Animator>();		
 		sounds = GetComponents<AudioSource>();
         collectAudio = sounds[0];
         specialAudio = sounds[1];
