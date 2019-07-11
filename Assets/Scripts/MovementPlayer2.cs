@@ -35,7 +35,7 @@ public class MovementPlayer2 : MonoBehaviour {
 		
 		kessel = GameObject.Find ("Kessel");
 		kesselFeuer = GameObject.Find ("KesselFeuer");
-		kesselFeuer.SetActive(false); 
+		//kesselFeuer.SetActive(false); 
 		
 		count = 0;
         SetCountText ();
@@ -62,7 +62,7 @@ public class MovementPlayer2 : MonoBehaviour {
 			while (movementZ < -0.5f ) movementZ = -0.5f;
 				this.transform.Translate(Vector3.forward*speedAdjust*-0.5f);
 		}else{
-			if(!Input.GetKey("w")){
+			if(!Input.GetKey("i")){
 				anim.SetFloat("MoveZ", 0f);
 			}
 		}
@@ -72,7 +72,7 @@ public class MovementPlayer2 : MonoBehaviour {
 			if (movementX > 0.5f ) movementX = 0.5f;
 			this.transform.Rotate(0,2.0f,0);
 		}else{
-			if(!Input.GetKey("a")){
+			if(!Input.GetKey("j")){
 				anim.SetFloat("MoveX", 0f);
 			}
 		}
@@ -82,7 +82,7 @@ public class MovementPlayer2 : MonoBehaviour {
 			if (movementX < -0.5f ) movementX= -0.5f;
 			this.transform.Rotate(0,-2.0f,0);
 		}else{
-			if(!Input.GetKey("d")){
+			if(!Input.GetKey("l")){
 			anim.SetFloat("MoveX", 0f);
 			}
 		}
