@@ -17,6 +17,7 @@ public class MovementPlayer2 : MonoBehaviour {
     static public int count;
 	
 	public int numPotions;
+	static public int numPotionsPublic = 7;
 	
 	private AudioSource[] sounds;
     private AudioSource collectAudio;
@@ -28,6 +29,7 @@ public class MovementPlayer2 : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		numPotionsPublic = numPotions;
         anim = GetComponent<Animator>();		
 		sounds = GetComponents<AudioSource>();
         collectAudio = sounds[0];
@@ -86,25 +88,65 @@ public class MovementPlayer2 : MonoBehaviour {
 			anim.SetFloat("MoveX", 0f);
 			}
 		}
+		
+		if (Movement.numPotionsPublic <= 0)
+        {
+            winText.text = "All herbs found! Bring them to the cauldron.";
+			kesselFeuer.SetActive(true); 
+			kessel.SetActive(false); 
+        }
 	}
 		
-	   void OnTriggerEnter(Collider other) 
+	  	   void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.CompareTag ("Potion"))
         {
             other.gameObject.SetActive (false);
 			count = count + 10;
-			numPotions --;
+            SetCountText ();
+			collectAudio.Play();
+        }
+		if (other.gameObject.CompareTag ("klein"))
+        {
+            other.gameObject.SetActive (false);
+			count = count + 10;
+            SetCountText ();
+			this.transform.localScale = new Vector3(4,4,4);
+			collectAudio.Play();
+        }
+		
+		if (other.gameObject.CompareTag ("groß"))
+        {
+            other.gameObject.SetActive (false);
+			count = count + 10;
+            SetCountText ();
+			this.transform.localScale = new Vector3(30,30,30);
+			collectAudio.Play();
+        }
+				
+		if (other.gameObject.CompareTag ("Specialherb"))
+        {
+            other.gameObject.SetActive (false);
+			count = count + 15;
+			numPotionsPublic --;
+			 Movement.numPotionsPublic --;
             SetCountText ();
 			collectAudio.Play();
         }
 		
-		if (other.gameObject.CompareTag ("RundPotion"))
+		if (other.gameObject.CompareTag ("Herb"))
         {
             other.gameObject.SetActive (false);
-			count = count + 15;
-			numPotions --;
+			count = count + 10;
+			numPotionsPublic --;
+			 Movement.numPotionsPublic --;
             SetCountText ();
+			collectAudio.Play();
+        }
+		
+		if (other.gameObject.CompareTag ("NormalPotion"))
+        {
+			this.transform.localScale = new Vector3(10,10,10);
 			collectAudio.Play();
         }
 		   
@@ -119,13 +161,16 @@ public class MovementPlayer2 : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Stab"))
         {
             other.gameObject.SetActive (false);
-			count = count + 30;
+			count = count + 20;
             SetCountText ();
 			specialAudio.Play();
         }  
 				
-		if	(other.gameObject.CompareTag ("KesselFeuer")){
-			winText.text = "You won!";
+		if	(other.gameObject.CompareTag ("Fliegenpilz")){
+			other.gameObject.SetActive (false);
+			count = count - 40;
+            SetCountText ();
+			specialAudio.Play();
 		}
 				
     }
@@ -142,9 +187,9 @@ public class MovementPlayer2 : MonoBehaviour {
 	void SetCountText ()
     {
         countText.text = "Points: " + count.ToString ();
-        if (numPotions<= 0)
+        if (numPotionsPublic<= 0 ||  Movement.numPotionsPublic <= 0)
         {
-            winText.text = "All potions found! Bring them to the cauldron.";
+            winText.text = "All herbs found! Bring them to the cauldron.";
 			kesselFeuer.SetActive(true); 
 			kessel.SetActive(false); 
         }

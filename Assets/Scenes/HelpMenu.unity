@@ -305,7 +305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 52, y: -98}
+  m_AnchoredPosition: {x: 52, y: -143}
   m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1174170006
@@ -859,7 +859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 125, y: -41}
+  m_AnchoredPosition: {x: 125, y: -8}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1926947363
@@ -895,9 +895,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Collect as many potions as possible in the remaining time and bring them
-    to the cauldron. But always be on the lookout for special objects, they may give
-    you some extra points...
+  m_Text: 'Collect as many potions as possible and bring them to the cauldron. But
+    always be on the lookout for special objects, they may give you some extra points
+    or great abilities...
+
+    To regain your normal size use the potions next to your start point.
+
+    Controls: A,S,W,D and I,J,k,L'
 --- !u!222 &1926947364
 CanvasRenderer:
   m_ObjectHideFlags: 0

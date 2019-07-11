@@ -10,6 +10,12 @@ TagManager:
   - Kessel
   - KesselFeuer
   - RundPotion
+  - "gro\xDF"
+  - klein
+  - Fliegenpilz
+  - NormalPotion
+  - Herb
+  - Specialherb
   layers:
   - Default
   - TransparentFX
