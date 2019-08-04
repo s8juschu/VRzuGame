@@ -111,8 +111,9 @@ public class Movement : MonoBehaviour {
             other.gameObject.SetActive (false);
 			count = count + 10;
             SetCountText ();
-			this.transform.localScale = new Vector3(4,4,4);
-			 Debug.Log ("scale down");
+			StartCoroutine(MakeSmaller());
+			//this.transform.localScale = new Vector3(4,4,4);
+			Debug.Log ("scale down");
 			collectAudio.Play();
         }
 		
@@ -121,7 +122,8 @@ public class Movement : MonoBehaviour {
             other.gameObject.SetActive (false);
 			count = count + 10;
             SetCountText ();
-			this.transform.localScale = new Vector3(30,30,30);
+			StartCoroutine(MakeBigger());
+			//this.transform.localScale = new Vector3(30,30,30);
 			collectAudio.Play();
         }
 				
@@ -176,6 +178,30 @@ public class Movement : MonoBehaviour {
 		}
 				
     }
+	
+	
+	private IEnumerator MakeSmaller()
+	{
+		while (this.transform.localScale.z > 4 && this.transform.localScale.y > 4 && this.transform.localScale.x > 4 ){  
+			this.transform.localScale -= new Vector3(2,2,2);
+			yield return new WaitForSeconds (0.3f);
+		}
+		if(this.transform.localScale.z <= 4 && this.transform.localScale.y <= 4 && this.transform.localScale.x <= 4 ){
+			this.transform.localScale = new Vector3(4,4,4);
+		}
+	}
+	
+	private IEnumerator MakeBigger()
+	{
+		while (this.transform.localScale.z < 30 && this.transform.localScale.y < 30 && this.transform.localScale.x < 30 ){  
+			this.transform.localScale += new Vector3(5,5,5);
+			yield return new WaitForSeconds (0.3f);
+		}
+		if(this.transform.localScale.z >= 30 && this.transform.localScale.y >= 30 && this.transform.localScale.x >= 30 ){
+			this.transform.localScale = new Vector3(30,30,30);
+		}
+		
+	}
 	
 		
 	 void OnCollisionEnter(Collision other)
